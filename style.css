@@ -1,0 +1,768 @@
+/* ==========================================================================
+   SLAT.CC / GUNS.LOL AESTHETICS - X2SWIFTZ BIO LINK
+   Dark Gunmetal, Light Rays, Pill Cards & SVG Icons
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0a0b0e;
+    --card-bg: rgba(18, 19, 24, 0.88);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --card-border-glow: rgba(255, 255, 255, 0.04);
+    --card-shadow: 0 0 25px rgba(255, 255, 255, 0.025), 0 20px 45px rgba(0, 0, 0, 0.75);
+    --pill-bg: rgba(255, 255, 255, 0.05);
+    --pill-border: rgba(255, 255, 255, 0.09);
+    --accent-blue: #0284c7;
+    --text-white: #ffffff;
+    --text-light: #f1f5f9;
+    --text-muted: #64748b;
+    --text-sub: #94a3b8;
+    --green-status: #22c55e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ==========================================================================
+   AMBIENT DIAGONAL LIGHT BEAMS & CANVAS
+   ========================================================================== */
+.ambient-beams-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.light-beam {
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    pointer-events: none;
+    transform: rotate(-32deg);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.015) 15%,
+        rgba(255, 255, 255, 0.045) 25%,
+        transparent 35%,
+        transparent 55%,
+        rgba(255, 255, 255, 0.035) 65%,
+        transparent 75%
+    );
+    filter: blur(40px);
+}
+
+.star-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   FLOATING AUDIO TOGGLE (Top Corner)
+   ========================================================================== */
+.floating-audio-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(18, 19, 24, 0.85);
+    border: 1px solid var(--card-border);
+    color: var(--text-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+}
+
+.floating-audio-btn:hover {
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.08);
+}
+
+.audio-icon-box {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-icon-box svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   CLICK TO ENTER SPLASH SCREEN
+   ========================================================================== */
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 8, 11, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    text-align: center;
+}
+
+.splash-cursor-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #a1a1aa;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    animation: splashPulse 2s infinite ease-in-out;
+}
+
+@keyframes splashPulse {
+    0%, 100% { opacity: 0.65; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.03); border-color: rgba(255, 255, 255, 0.2); }
+}
+
+/* ==========================================================================
+   MAIN SLAT STACK CONTAINER
+   ========================================================================== */
+.slat-stack-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 50px 16px 80px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ==========================================================================
+   1. MAIN PROFILE CARD (Top Card)
+   ========================================================================== */
+.slat-main-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 36px;
+    padding: 28px 24px 22px 24px;
+    box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: transform 0.2s ease-out, border-color 0.25s ease;
+}
+
+.slat-main-card:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.main-card-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.avatar-ring {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #090a0f;
+}
+
+.vector-avatar-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.view-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    font-size: 13px;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.view-pill-svg {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+}
+
+.view-pill-svg svg {
+    width: 100%;
+    height: 100%;
+}
+
+.username-row {
+    margin-bottom: 6px;
+}
+
+.main-username {
+    font-size: 27px;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: -0.4px;
+    display: flex;
+    align-items: center;
+}
+
+.blinking-cursor {
+    font-weight: 300;
+    margin-left: 2px;
+    color: #ffffff;
+    animation: cursorBlink 0.9s infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.main-bio-group {
+    margin-bottom: 18px;
+}
+
+.bio-text-primary {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.bio-text-languages {
+    font-family: 'JetBrains Mono', monospace, sans-serif;
+    font-size: 13.5px;
+    color: var(--text-muted);
+}
+
+.lang-prefix {
+    color: #64748b;
+    margin-right: 4px;
+}
+
+.lang-tag-highlight {
+    background: var(--accent-blue);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+}
+
+.lang-comma {
+    color: #64748b;
+    margin-right: 4px;
+}
+
+.lang-others {
+    color: var(--text-sub);
+}
+
+/* Pills / Badges Row in Main Card */
+.main-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.badge-pill-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.badge-pill-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.pill-svg-icon {
+    width: 13px;
+    height: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+}
+
+.pill-svg-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Social Dock Inset Capsule */
+.social-dock-capsule {
+    background: rgba(10, 11, 14, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 999px;
+    padding: 7px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.social-circle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+}
+
+.social-circle-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.social-circle-btn:hover {
+    transform: scale(1.14);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.social-btn-ig {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* ==========================================================================
+   2. MODULAR CARDS STACK BELOW MAIN CARD
+   ========================================================================== */
+.slat-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modular-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease-out, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.modular-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.04), 0 22px 50px rgba(0, 0, 0, 0.85);
+}
+
+.pill-card {
+    border-radius: 999px;
+    padding: 12px 18px 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.card-left-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+
+.card-avatar-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    overflow: visible;
+}
+
+.card-avatar-wrap .vector-avatar-svg {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar-status-pip {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #101116;
+}
+
+.card-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: -0.2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-badge-emoji {
+    font-size: 13px;
+}
+
+.card-status-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-sub);
+}
+
+.status-indicator-green {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green-status);
+    box-shadow: 0 0 7px var(--green-status);
+    flex-shrink: 0;
+}
+
+.status-indicator-white {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    margin-left: 4px;
+    flex-shrink: 0;
+}
+
+.status-num {
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.card-handle-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+
+.brand-sub-icon {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-sub);
+}
+
+.brand-sub-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.card-handle-text {
+    color: var(--text-sub);
+    font-weight: 500;
+}
+
+.card-stats-row {
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+.card-stats-row strong {
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+/* Action button on right of card (Join / Visit) */
+.card-action-wrap {
+    flex-shrink: 0;
+}
+
+.pill-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-white);
+    letter-spacing: 0.2px;
+    transition: all 0.2s ease;
+}
+
+.modular-card:hover .pill-action-btn {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.04);
+}
+
+/* Script Hub Featured Card Special Styling */
+.scripthub-pill-card {
+    border-color: rgba(249, 115, 22, 0.35);
+}
+
+.scripthub-pill-card:hover {
+    border-color: rgba(249, 115, 22, 0.7);
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.15), 0 20px 45px rgba(0, 0, 0, 0.85);
+}
+
+.scripthub-domain-row {
+    color: #fdba74;
+}
+
+.card-sub-icon {
+    width: 13px;
+    height: 13px;
+    color: #f97316;
+    display: inline-flex;
+    align-items: center;
+}
+
+.card-sub-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.scripthub-meta-row {
+    color: #94a3b8;
+    font-size: 11.5px;
+}
+
+.visit-btn {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: rgba(249, 115, 22, 0.4);
+    color: #ffedd5;
+}
+
+.scripthub-pill-card:hover .visit-btn {
+    background: #f97316;
+    border-color: #f97316;
+    color: #ffffff;
+}
+
+/* Extended Card (Roblox LILBACKNIPPA with About quote box) */
+.extended-card {
+    border-radius: 28px;
+    padding: 18px 20px 16px 20px;
+}
+
+.card-header-section {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.card-about-section {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.about-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+.about-quote-row,
+.about-joined-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12.5px;
+}
+
+.about-quote-text {
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.about-joined-text {
+    color: #94a3b8;
+}
+
+.about-meta-icon {
+    width: 14px;
+    height: 14px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.about-meta-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION
+   ========================================================================== */
+.toast-pill {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: rgba(18, 19, 24, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    padding: 10px 22px;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 9999;
+    backdrop-filter: blur(12px);
+}
+
+.toast-pill.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 480px) {
+    .slat-stack-wrapper {
+        padding: 40px 12px 60px 12px;
+    }
+
+    .slat-main-card {
+        padding: 24px 18px 18px 18px;
+        border-radius: 30px;
+    }
+
+    .main-username {
+        font-size: 24px;
+    }
+
+    .social-dock-capsule {
+        gap: 8px;
+        padding: 6px 10px;
+    }
+
+    .social-circle-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .social-circle-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .pill-card {
+        padding: 10px 14px;
+    }
+
+    .card-avatar-wrap {
+        width: 42px;
+        height: 42px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+}

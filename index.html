@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>x2Swiftz • Official Bio</title>
+
+    <!-- Meta Tags & Open Graph for Discord / Social Sharing -->
+    <meta name="description" content="x2Swiftz - Content Creator and Developer. Official Discord, YouTube & Script Hub links.">
+    <meta property="og:title" content="x2Swiftz • Official Bio">
+    <meta property="og:description" content="I'm Content Creator and Developer // Language: NextJs, Go, Rust, Lua">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0a0b0e">
+
+    <!-- Google Fonts: Inter, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===================================================================
+         CLICK TO ENTER SPLASH SCREEN
+         =================================================================== -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <span class="splash-cursor-tag">[ click anywhere to enter ]</span>
+        </div>
+    </div>
+
+    <!-- ===================================================================
+         BACKGROUND AMBIENT LIGHT RAYS & STARFIELD
+         =================================================================== -->
+    <div class="ambient-beams-container" aria-hidden="true">
+        <div class="light-beam"></div>
+    </div>
+    <canvas id="starCanvas" class="star-canvas" aria-hidden="true"></canvas>
+
+    <!-- Background Audio Element -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Audio Control Floating Pill (Top-Left) -->
+    <button type="button" class="floating-audio-btn" id="audioToggleBtn" title="Play / Pause Audio" aria-label="Toggle Audio">
+        <span class="audio-icon-box" id="audioIconContainer"></span>
+    </button>
+
+    <!-- ===================================================================
+         MAIN SLAT.CC STACK LAYOUT (Exact match to screenshot)
+         =================================================================== -->
+    <main class="slat-stack-wrapper">
+
+        <!-- ===============================================================
+             1. MAIN PROFILE CARD (Top Card)
+             =============================================================== -->
+        <section class="slat-card slat-main-card" id="mainCard">
+            <!-- Top Row: Avatar on Left, View Count Pill on Right -->
+            <div class="main-card-top-row">
+                <div class="avatar-ring" id="mainAvatarContainer">
+                    <!-- Populated with Vector Avatar SVG in app.js -->
+                </div>
+
+                <div class="view-pill" id="viewCountPill">
+                    <span class="view-pill-svg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </span>
+                    <span id="viewCountText">8.2K</span>
+                </div>
+            </div>
+
+            <!-- Username with Typewriter Blinking Cursor (x2Swiftz|) -->
+            <div class="username-row">
+                <h1 class="main-username">
+                    <span id="typingUsername">x2Swiftz</span><span class="blinking-cursor">|</span>
+                </h1>
+            </div>
+
+            <!-- Bio Descriptions -->
+            <div class="main-bio-group">
+                <p class="bio-text-primary" id="bioPrimary">I'm Content Creator and Developer</p>
+                <p class="bio-text-languages">
+                    <span class="lang-prefix">// Language:</span>
+                    <span class="lang-tag-highlight" id="langTagHighlight">NextJs</span><span class="lang-comma">,</span>
+                    <span class="lang-others" id="langOthers">Go, Rust, Lua</span>
+                </p>
+            </div>
+
+            <!-- Pills / Badges Row (Xenon Hub, ReaperX, Xenon Store, etc.) -->
+            <div class="main-badges-row" id="mainBadgesRow">
+                <!-- Populated dynamically from config.js -->
+            </div>
+
+            <!-- Social Media Icons Inset Capsule Dock (Discord, YouTube, ScriptHub, etc.) -->
+            <div class="social-dock-capsule" id="socialDock">
+                <!-- Populated dynamically from config.js with SVG icons -->
+            </div>
+        </section>
+
+        <!-- ===============================================================
+             2. MODULAR CARDS STACK (Cards below the main profile card)
+             =============================================================== -->
+        <section class="slat-cards-stack" id="cardsStack">
+            <!-- Populated dynamically from config.js (Discord, Script Hub, Roblox, GitHub, etc.) -->
+        </section>
+
+    </main>
+
+    <!-- Toast Notification Pill -->
+    <div class="toast-pill" id="toastMessage">
+        <span id="toastText">Action successful</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
